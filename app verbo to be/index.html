@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>App Verbo To Be</title>
+  <style>
+    /* Fondo difuminado */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #000000, #3a003d);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    header {
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .menu, .page {
+      margin-top: 40px;
+    }
+
+    /* Botones con mismo estilo */
+    button {
+      background: linear-gradient(135deg, #000000, #6a0dad);
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      margin: 12px;
+      font-size: 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .content {
+      padding: 20px;
+      text-align: left;
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+    }
+
+    .question {
+      margin: 15px 0;
+    }
+
+    input {
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 5px;
+      width: 90%;
+    }
+
+    .correct {
+      color: lightgreen;
+      font-weight: bold;
+    }
+
+    .incorrect {
+      color: #ff6961;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    📘 App para aprender el verbo "TO BE"
+  </header>
+
+  <!-- Menú principal -->
+  <div id="menu" class="menu">
+    <p>Bienvenido. Aquí aprenderás el verbo <b>"to be"</b>, vocabulario básico en inglés y practicarás con ejercicios de escritura.</p>
+    <button onclick="showPage('conceptos')">Conceptos</button>
+    <button onclick="showPage('diccionario')">Diccionario</button>
+    <button onclick="showPage('actividad')">Actividad</button>
+  </div>
+
+  <!-- Página de conceptos -->
+  <div id="conceptos" class="page hidden">
+    <div class="content">
+      <h2>Conceptos del verbo "to be"</h2>
+      <p>El verbo "to be" en inglés significa <b>ser</b> o <b>estar</b>, dependiendo del contexto. Es uno de los verbos más importantes y se usa para describir identidades, estados, profesiones, lugares y emociones.</p>
+      <p><b>Ejemplos:</b></p>
+      <ul>
+        <li>I am a teacher → Yo soy profesor</li>
+        <li>She is happy → Ella está feliz</li>
+        <li>We are in Bogotá → Estamos en Bogotá</li>
+      </ul>
+      <button onclick="goBack()">⬅ Volver</button>
+    </div>
+  </div>
+
+  <!-- Página de diccionario -->
+  <div id="diccionario" class="page hidden">
+    <div class="content">
+      <h2>Diccionario Básico</h2>
+      <h3>🧸 Objetos (Objects)</h3>
+      <ul>
+        <li>Mesa → Table</li>
+        <li>Silla → Chair</li>
+        <li>Lápiz → Pencil</li>
+        <li>Libro → Book</li>
+        <li>Teléfono → Phone</li>
+        <li>Computadora → Computer</li>
+        <li>Reloj → Clock / Watch</li>
+        <li>Mochila → Backpack</li>
+      </ul>
+
+      <h3>🐾 Animales (Animals)</h3>
+      <ul>
+        <li>Perro → Dog</li>
+        <li>Gato → Cat</li>
+        <li>Pájaro → Bird</li>
+        <li>Pez → Fish</li>
+        <li>Caballo → Horse</li>
+        <li>Vaca → Cow</li>
+        <li>León → Lion</li>
+        <li>Elefante → Elephant</li>
+      </ul>
+
+      <h3>👕 Ropa (Clothing)</h3>
+      <ul>
+        <li>Camisa → Shirt</li>
+        <li>Pantalón → Pants / Trousers</li>
+        <li>Zapatos → Shoes</li>
+        <li>Vestido → Dress</li>
+        <li>Chaqueta → Jacket</li>
+        <li>Sombrero → Hat</li>
+        <li>Calcetines → Socks</li>
+        <li>Falda → Skirt</li>
+      </ul>
+
+      <h3>🌦️ Climas (Weather)</h3>
+      <ul>
+        <li>Soleado → Sunny</li>
+        <li>Lluvioso → Rainy</li>
+        <li>Nublado → Cloudy</li>
+        <li>Nevado → Snowy</li>
+        <li>Ventoso → Windy</li>
+        <li>Tormenta → Storm</li>
+        <li>Caluroso → Hot</li>
+        <li>Frío → Cold</li>
+      </ul>
+
+      <button onclick="goBack()">⬅ Volver</button>
+    </div>
+  </div>
+
+  <!-- Página de actividad -->
+  <div id="actividad" class="page hidden">
+    <div class="content">
+      <h2>Actividad: Completa con el verbo "to be"</h2>
+      <form id="quizForm">
+        <div class="question">1. I ___ a student. <br><input type="text" name="q1"></div>
+        <div class="question">2. She ___ my sister. <br><input type="text" name="q2"></div>
+        <div class="question">3. They ___ at the park. <br><input type="text" name="q3"></div>
+        <div class="question">4. We ___ happy today. <br><input type="text" name="q4"></div>
+        <div class="question">5. He ___ a doctor. <br><input type="text" name="q5"></div>
+        <div class="question">6. You ___ very kind. <br><input type="text" name="q6"></div>
+        <div class="question">7. It ___ a beautiful day. <br><input type="text" name="q7"></div>
+        <button type="button" onclick="checkAnswers()">Verificar</button>
+      </form>
+      <p id="result"></p>
+      <button onclick="goBack()">⬅ Volver</button>
+    </div>
+  </div>
+
+  <script>
+    // Mostrar páginas
+    function showPage(pageId) {
+      document.getElementById("menu").classList.add("hidden");
+      document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+      document.getElementById(pageId).classList.remove("hidden");
+    }
+
+    // Volver al menú
+    function goBack() {
+      document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+      document.getElementById("menu").classList.remove("hidden");
+    }
+
+    // Verificación con respuestas exactas
+    function checkAnswers() {
+      const correctAnswers = [
+        "I am a student.",
+        "She is my sister.",
+        "They are at the park.",
+        "We are happy today.",
+        "He is a doctor.",
+        "You are very kind.",
+        "It is a beautiful day."
+      ];
+
+      const form = document.forms["quizForm"];
+      let resultText = "";
+      let correctCount = 0;
+
+      for (let i = 0; i < correctAnswers.length; i++) {
+        const userAnswer = form["q" + (i + 1)].value.trim();
+        if (userAnswer === correctAnswers[i]) {
+          resultText += `<p class="correct">✔ Pregunta ${i + 1}: Correcto</p>`;
+          correctCount++;
+        } else {
+          resultText += `<p class="incorrect">✘ Pregunta ${i + 1}: Incorrecto. Respuesta correcta: "${correctAnswers[i]}"</p>`;
+        }
+      }
+
+      resultText += `<p><b>Resultado final: ${correctCount} / ${correctAnswers.length} correctas.</b></p>`;
+      document.getElementById("result").innerHTML = resultText;
+    }
+  </script>
+</body>
+</html>
+
